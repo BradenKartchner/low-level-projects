@@ -1,6 +1,7 @@
 ## Resources
 
 https://gbdev.io/gb-opcodes/optables/
+https://gbdev.io/pandocs/About.html
 
 ## Opcodes
 
@@ -42,3 +43,19 @@ Anything larger than that has more than 1 ROM chip and other chips to manage swi
 
 Each cartridge has a reserved area of memory called the "Cartridge Header"
 Header is located at offset 0x100 in the cartridge ROM
+
+## Cartridge Header
+
+Every ROM cartridge contains a similar header at address range `$0100 - $014F` (256 - 335)
+
+$0100 - $0103: Entry point (256 - 259, 4 bytes)
+After displaying the Nintendo logo, the built-in boot ROM jumps to the address $0100, which should then jump to the actual main program in the cartridge
+Most commercial games fill this 4-byte area with a NOP instruction followed by `jp $0150`
+
+$0104 - $0133: Nintendo logo (260 - 307, 48 bytes)
+This area contains a bitmap image that is displayed when the GameBoy is powered on.
+It must match the following hexadecimal dump, otherwise the boot ROM won't allow the game to run:
+CE ED 66 66 CC 0D 00 0B 03 73 00 83 00 0C 00 0D
+00 08 11 1F 88 89 00 0E DC CC 6E E6 DD DD D9 99
+BB BB 67 63 6E 0E EC CC DD DC 99 9F BB B9 33 3E
+For more info, see: https://gbdev.io/pandocs/The_Cartridge_Header.html
