@@ -59,3 +59,8 @@ CE ED 66 66 CC 0D 00 0B 03 73 00 83 00 0C 00 0D
 00 08 11 1F 88 89 00 0E DC CC 6E E6 DD DD D9 99
 BB BB 67 63 6E 0E EC CC DD DC 99 9F BB B9 33 3E
 For more info, see: https://gbdev.io/pandocs/The_Cartridge_Header.html
+
+$0134 - $0143: Game's title (308 - 323, 16 bytes)
+Contain the title of the game in upper case ASCII
+If the title is less than 16 char long, the remaining bytes contain $))
+On later cartridges, parts of this area have a different meaning, reducing the actual title size to 15 or 11 characters
